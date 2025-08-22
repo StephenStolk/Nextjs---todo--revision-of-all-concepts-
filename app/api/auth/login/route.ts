@@ -4,8 +4,9 @@ import User from "@/models/userModel";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+connect();
 export async function POST(req: NextRequest) {
-    await connect();
+    // await connect();
 
     try {
         const {email, password} = await req.json();
@@ -44,7 +45,7 @@ export async function POST(req: NextRequest) {
             email: existingUser.email,
         };
 
-        const token = await jwt.sign(tokendata, process.env.TOKEN_SECRET!, {
+        const token = jwt.sign(tokendata, process.env.TOKEN_SECRET!, {
             expiresIn: "1d"
         });
 
