@@ -2,8 +2,9 @@ import {connect} from "@/lib/dbconfig";
 import User from "@/models/userModel";
 import { NextResponse, NextRequest } from "next/server";
 
+connect();
+
 export async function POST(req:NextRequest) {
-    await connect();
 
     try {
         const {username, email, password} = await req.json();
